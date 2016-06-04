@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>相阁</title>
+	<link href="../../public/css/index.css" rel="stylesheet" type="text/css" />
+	<link href="../../public/css/article.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+	<div id="top-nav">
+		<div class="nav-head-img">
+			<img src="../../public/images/head_img.jpg" title="aaa">
+		</div>
+		<div class="nav-list">
+			<div class="nav-fluid">
+				<dl class="fl">
+					<dt><a href="#">PHP</a></dt>
+					<dd>
+						<ul>
+							<li>PHP</li>
+							<li>Mysql</li>
+							<li>服务器</li>
+							<li>随笔</li>
+							<li>书籍</li>
+							<li>个人简介</li>
+						</ul>
+					</dd>
+				</dl>
+				<dl class="fl">
+					<dt><a href="#">Mysql</a></dt>
+					<dd>
+						<ul>
+							<li>PHP</li>
+							<li>Mysql</li>
+							<li>服务器</li>
+							<li>随笔</li>
+							<li>书籍</li>
+							<li>个人简介</li>
+						</ul>
+					</dd>
+				</dl>
+
+				<dl class="fl">
+					<dt><a href="#">服务器</a></dt>
+					<dd>
+						<ul>
+							<li>PHP</li>
+							<li>Mysql</li>
+							<li>服务器</li>
+							<li>随笔</li>
+							<li>书籍</li>
+							<li>个人简介</li>
+						</ul>
+					</dd>
+				</dl>
+
+				<dl class="fl">
+					<dt><a href="#">随笔</a></dt>
+					<dd>
+						<ul>
+							<li>PHP</li>
+							<li>Mysql</li>
+							<li>服务器</li>
+							<li>随笔</li>
+							<li>书籍</li>
+							<li>个人简介</li>
+						</ul>
+					</dd>
+				</dl>
+
+				<dl class="fl">
+					<dt><a href="#">书籍</a></dt>
+					<dd>
+						<ul>
+							<li>PHP</li>
+							<li>Mysql</li>
+							<li>服务器</li>
+							<li>随笔</li>
+							<li>书籍</li>
+							<li>个人简介</li>
+						</ul>
+					</dd>
+				</dl>
+
+				<dl class="fl">
+					<dt><a href="#">个人简介</a></dt>
+					<dd>
+						<ul>
+							<li>PHP</li>
+							<li>Mysql</li>
+							<li>服务器</li>
+							<li>随笔</li>
+							<li>书籍</li>
+							<li>个人简介</li>
+						</ul>
+					</dd>
+				</dl>
+			</div>
+			
+		</div>
+	</div>
+	<div id="center">
+		
+
+		<h1 class="article-h1">细说PHP之路</h1>
+		<div class="something">
+			<div class="fr">
+				<span>2016-06-03</span>
+			</div>
+		</div>
+
+		<div id="article-main" class="article-main">
+			<h1>前言</h1>
+
+　　<p>数据层设计真是一个百说不厌的话题，大系统说并发量，说高性能；小系统追求开发效率，易维护性各有各的追求。
+　　OSharp 开发框架的定位是中小系统， 数据层的开发效率与易用性的权重就比较高了，所以，使用ORM当然是首选。在 .net 环境下，有众多的闭源的开源的优秀的ORM组件，从各方便对比来看，EntityFramework 是不二之选。一提起 EntityFramework，不少同学又要蠢蠢欲动来吐槽其性能了。其实，经过几个版本的更新换代，现在的稳定版 EntityFramework 6 已经相当好用了，nuget 上截止到目前 “8,830,918 total downloads” 已经足够能说明问题了，EntityFramework 在整个 .net 世界是相当受欢迎的。不过，不管哪个技术平台，能不能用好一个技术与技术水平有很大的关系，如果没追求，随处的 select * from xxx，传说中高性能的 ado.net 也不会高到哪去。
+为什么强依赖于EntityFramework</p>
+
+
+			<h1>为什么强依赖于EntityFramework</h1>
+
+　　<p>在本系列开篇《总体设计》对 OSharp 开发框架的数据存储组件的介绍时，就强调了 OSharp 将“强依赖”于 EntityFramework 这个数据访问组件。当时就有人提出了“强依赖Entity framework是个坑吧”的疑问。这里简要解释一下为什么 OSharp 不打算做成兼容各种数据访问方案（EF，NH，ado.net 等等）。我们来看看统一各个ORM需要付出的代价：
+
+需要统一标准，业务层与数据层之间的数据交互载体只能是POCO数据实体，如果个别ORM需要对实体有特殊要求（如NH要求实体属性为virtual），需要在ORM实现内部进行适配转换。
+数据交互只能是实体，这就导致了参数数据查询的所有 sql 语句都是“select * from ...”这种方式，这将给系统性能带来伤害。
+要兼容各个ORM，数据层只能提供一些能普遍适应的 API，放弃各种 ORM 的优点与特色（如EF的linq查询）
+　　基于上面的一些理由，我们发现要兼容各种数据访问方案，需要付出的代码是很大的，很不划算。因此，OSharp 将专注于一款 ORM，从各方面比较，EntityFramework 是一个好选择，理由如下：
+
+EntityFramework 是微软大力发展的一个开源项目，EF 6 在 codeplex.com 开源，EF 7 在 github.com 随 ASP.NET 5 开源。
+EntityFramework 能轻松支持各大主流数据库，只要引入相应数据库的 DataProvider 即可，能无差异的操作各大主流数据库。
+EntityFramework 支持 linq to entities 语句查询，强类型支持，高效实现查询需求。
+EntityFramework 全面封装了数据库细节，使用了大量的“约定胜于配置”的思想，使开发者不必直接对关系存储架构编程，减少代码量，减轻维护工作，并使项目可维护性更高。
+为什么要封装EntityFramework
+
+　　在计划使用EntityFramework来在项目中实现数据存储时，遇到的第一个问题就是：怎样来使用EntityFramework？要不要对EntityFramework进行二次封装？ 
+
+　　反对对 EntityFramework 进行封装的同学，通常会有如下理由：
+
+EntityFramework 提供的API已经足够简单了，已经有了非常良好的易用性，没有再封装的必要。
+EntityFramework 内部已经实现了一个 UnitOfWork + Repository 的封装，没有必要再包装一次。
+EntityFramework 提供的API非常灵活且很有特色，封装有可能会丧失其灵活性
+　　我认为，如果是小项目，且所有开发成员都能很好的使用 EntityFramework，在业务层中直接使用，将 EntityFramework 的灵活性发挥出来，也是非常好的。但是，直接使用 EntityFramework 的话，也有不少弊端，对于 OSharp 这样一个开发框架而言，封装就显得非常有必要了，原因如下：
+
+不是所有的开发人员都对 EntityFramework 足够熟悉，封装之后能将 EntityFramework 的细节及较敏感的 API 进行包装与隐藏，使 EntityFramework 的使用更加透明易用。
+统一的封装，有利于对业务层提供统一的 API，对业务层的代码规范非常有利。
+封装有利于业务实体与 EntityFramework 的解耦。如果不封装，所有业务实体模型（Model）都要在上下文类中设置一个 DbSet<TEntity> 类型的实体集，将与上下文强耦合，当需求发生变化时，都要对原有代码进行修改，很不利于维护。而封装之后，所有的实体模型都是动态加载到上下文类中的，业务实体与 EntityFramework 能够完全解耦，大大增强系统的可维护性。 
+EntityFramework封装的常见误区
+
+ 　　在 EntityFramework 的发展过程中，很多使用者都在抱怨 EntityFramework 性能低下，其实很多时候都是因为对 EntityFramework 没有足够的了解，走进了误区所致。那么，EntityFramework 会有哪些误区呢？这里我列几个我所了解的“坑”，欢迎补充。
+
+错误使用返回类型，不了解 IEnumerable<T> 与 IQueryable<T> 的区别
+
+　　在设计数据访问层的查询API的时候，IEnumerable<T> 和 IQueryable<T> 都可以作为集合类查询结果的返回类型，那么，这两者有什么区别呢？为什么误用的时候会造成致命的性能问题呢？
+
+
+　　正因为 IEnumerable<T> 接受的参数 predicate 数据类型是委托类型，所以这个参数在被调用的时候，就会立即执行查询逻辑，然后将查询的结果保存在内存中，后续的查询逻辑是完全在内存中执行的。而 IQueryable<T> 接受的参数 predicate 数据类型是表达式类型，这个参数会一直往下传递，直到被 IQueryable 中的 IQueryableProvider 类型的 Provider 属性解析成真正的查询语句（如 sql 语句），才传到数据源中进行查询动作。
+
+　　所以，如果查询返回的数据集合很大的时候，使用 IEnumerable<T> 作为返回类型，会将这个数据集合立即加载到内存中，比如在设计 IRepository<T> 的 API 时，设计  IEnumerable<T> GetAll(); ， IEnumerable<T> GetByPredicate(Func<T, bool> predicate); 这种 API ，是非常可怕的，如果一个表中有几十上百万的数据，也同样会把所有数据加载到内存中，可能直接就导致服务器宕机了。即使数据量不大，当并发量上来的时候，也同样会造成极大的性能问题。　　
+
+过早地内存化数据
+
+　　IEnumerable<T> 类型与 IQueryable<T> 类型是支持延迟的，没有真正使用数据之前，不管怎么调用，都不会执行查询，数据还是在数据库内，只有真正使用数据的时候，才会执行查询，把数据本地化到内存中。这样一来，什么时候执行本地化操作（ToArray()，ToList()等操作）就显得非常重要了，如果过早的执行本地化操作，那么就容易造成加载到内存的数据集合过于庞大，记录条数过多，造成性能问题。因此，在进行数据查询的时候，原则上应该按需获取数据，取出的数据集合就尽量的小，字段应尽量少，到数据真正使用的时候，才执行数据内存本地化操作。对于筛选部分字段的需求，linq to entities 的 select 查询匿名结果的查询方式，提供了有力的支持。</p>
+
+<h1>导航属性的延迟加载与循环</h1>
+
+　　<p>EntityFramework 实体模型的导航属性（即与当前表有外键关系的关联表）通常标记为 virtual，标记为 virtual 之后，相应属性的数据是具有延迟加载的特性的，只有真正用到相应属性的数据时，才会根据外键关系执行相应的查询动作，加载相应的数据。延迟加载的特性，能给系统性能带来优化，因为加载主干实体时只加载主干实体的信息，不会把关联实体的信息都加载进来，关联实体的数据只有用到的时候都会去加载。但也正是因为延迟加载，导航属性的数据是用到一次就执行一次查询动作，加载一次数据，一次还如，如果对于相同实体，需要多次用到同一个导航属性，就会产生多次重复的查询动作来加载导航属性的数据，给系统带来性能问题。例如如下的操作：
+
+　　
+
+　　正确的做法，当需要在循环中使用导航属性时，应在循环之前加载主干实体数据时，把导航属性的数据使用 Include 查询一起加载：
+
+　　
+
+数据查询方式
+
+　　EntityFramework 给我们提供了直接使用 实体对象 的众多查询 API，如果我们在实现业务的时候，使用直接操作 实体对象 的方式，同样也会给系统造成性能问题。因为 EntityFramework 每执行一次查询，都会将实体的所有字段取出来，等同于每次都执行“ select * from xxx ” 的查询语句。更可怕的是导航属性的使用，因为导航属性的数据类型通常都定义为 ICollection<T> 或者 ICollection<T> 的派生类型，ICollection<T> 类型是什么？内存集合类型！也就是说，当我们直接调用 entity.NavigationProperties 这样一个导航属性的时候，会将 NavigationProperty 这个关联表的“所有数据”都加载到内存中。想想，如果这个关联表的数据几十上百万的话，那将是多么可怕的性能灾难！！
+
+　　那么，怎样编写数据查询的代码呢，个人认为应该分析场景：
+
+如果查询出来的数据需要进行更新，删除等操作，就使用实体查询的方式。
+如果查询出来的数据不需要再存回到数据库中，只是为了业务判断使用，则是按需要使用 Select 进行匿名对象查询的方式来只查询出必要的实体属性。
+　　PS：关于 EntityFramework 数据查询的更多内容，欢迎阅读 架构系列的《数据查询》篇。 </p>
+
+<h1>样设计 EntityFramework 数据层</h1>
+
+ 　　<p>前面说了那么多误区，那怎样来设计 EntityFramework 的数据访问层 API呢？这个话题在前面的 架构系列 中也讨论过了，但为了全面了解 OSharp 开发框架，这里不免要添点新料再炒次旧饭。
+
+业务实体模型基类 EntityBase
+
+ 　　为了能在底层对所有的实体模型类进行统一管理，并规范实体类必要的属性设定，定义了一个如下的 实体模型基类 EntityBase<TKey>。为适应不同主键数据类型的需求，定义了一个泛型 Id 类型，在各个实际实体模型中可以设置实体的主键数据类型。</p>
+
+				<h1>业务单元操作接口 IUnitOfWork</h1>
+
+ 　　<p>相比 架构系列 的 数据存储上下文管理，OSharp 的存储上下文进行了简化，OSharp 中的 IUnitOfWork 接口将直接作为 上下文类（DbContext的派生类）的一个接口而存在。其中定义了一个默认关闭的 TransactionEnabled 属性开关对“是否开启事务提交”进行管理。在默认的状态下，事务操作是关闭的（与 EntityFramework 的默认开启相反），调用 IRepository 对实体进行 增、改、删 操作，立即向数据库提交操作，这在进行单步操作的时候，很方便，不用每次都去调用一次 SaveChanges() 操作进行提交。在需要进行事务操作（同时提交多步操作，成功一起成功，失败一起失败）时，则需要将 TransactionEnabled 设置为 true，当调用 IRepository 对实体进行 增、改、删 操作时，会申请更改，但不会向数据库提交操作，需要在最后手动去调用 UnitOfWork.SaveChanges() 操作进行提交。</p>
+
+				<h1>实体仓储数据操作接口 IRepository</h1>
+
+ 　　<p>实体仓储数据操作接口 IRepository 的 API，是整个数据层设计的核心。IRepository 接口被定义为“实体类型、主键类型”的双泛型接口，实体类型限定为前面定义的实体基类 EntityBase<TKey> 的派生类，声明如下：
+
+1 interface IRepository<TEntity, TKey> : IDependency where TEntity : EntityBase<TKey>
+　　IRepository 中定义了两个属性：
+
+IUnitOfWork 类型的单元操作对象 UnitOfWork，此接口主要用于业务层执行事务操作。
+IQueryable<TEntity> 类型的 Entities，作为向业务层开放的 TEntity 实体类型的 查询数据源。OSharp 的大部分数据查询，均通过定义 IQueryable<T> 类型的扩展方法来完成。定义为 IQueryable<TEntity> 类型，即能保证 EntityFramework 组件原有的查询自由度，又能阻止业务层使用 此数据源 进行 增、改、删 等业务操作，必须调用 IRepository 中规定的 API 才能完成实体的业务操作。
+　　在操作 API 上，IRepository 接口主要定义了如下几种 API：
+
+普通 增、改、删 业务操作 API
+
+　　普通业务操作API主要是对单个或多个实体进行的单个或批量操作API：</p>
+
+
+				<h1>针对 DTO 的 增、改、删 业务操作API</h1>
+
+　　<p>在业务层实现对实体的增加，更新操作的时候，如果业务层接收的是 Dto 数据，需要对 Dto 的数据进行合法性检查，再将 Dto 通过 数据映射组件 AutoMapper 创建或更新相应类型的实体数据模型 Model，然后再按需求对 Model 的导航属性进行更新，再提交保存。在进行删除操作的时候，需要使用传入的主键 Id 检索相应的实体信息，并检查删除操作的可行性，再提交到上下文中进行删除操作，并删除其他相关数据。在这些针对实体的业务操作中，存在着很多相似的重复代码，这种重复代码的存在，会极大降低系统的可维护性。因此，在 数据仓储操作 中设计了一组专门针对 Dto 的业务操作API，利用 无返回委托 Action<T> 与 有返回委托 Func<T, RT> 来向底层传递 各实体业务操作的变化点的业务逻辑，以达到对 Dto 业务重复代码的彻底重构。</p>
+
+			<h1>数据查询 API</h1>
+
+ 　　<p>一个系统的数据层的所有 API 设计中，看似简单却又最复杂的是 数据查询API 的设计，可能的原因如下：
+
+业务需求是未知的，不可预见的，很难设计出能满足各种业务需求的 数据查询API
+业务需求是多变的，在数据层设计 数据查询API，很难保持稳定，往往也要跟随业务进行变更
+业务需求需要的数据是千奇百怪的，数据层 设置死的API很难满足业务的需求，给多了对系统性能造成影响，给少了又不能满足业务需求
+　　基于以上理由，可见在数据层中设计 数据查询API，是很难满足业务层对数据的需求的。那怎么办呢？答案就是不把数据查询的API设置死，把数据查询的决定权交给“真正需要数据的地方”，在哪需要数据就在哪查询，需要哪些数据、需要数据的哪一部分，业务层自己说了算，数据层只需要提供一个用于数据查询的“数据源”即可。到这里，IQueryable<T>的一切特性，几乎都是为了满足上面的需求而来的，只需在 IRepository 中对数据层开放一个“只读的” IQueryable<TEntity> 查询数据集即可，不同的数据查询需求，通过设计 IQueryable<T> 的扩展方法来完成。
+
+　　上面定义的 IQueryable<T>查询数据源，能满足大部分数据查询的需求，但某些 EntityFramework 的特定查询需求，还是应该单独定义 数据查询API，以更好的保障不丢失 EntityFramework 的数据查询自由度。在这里主要定义了 通过主键查找实体、使用 Include 包含指定导航属性 的数据查询API：</p>
+
+<h1>代码</h1>
+
+
+
+		</div>
+	</div>
+
+
+	<ul id="right-nav" class="right-nav">
+	</ul>
+	<a href="#center" class="top">top</a>
+</body>
+<script type="text/javascript" src="../../public/js/jquery.min.js"></script>
+<script type="text/javascript" src="../../public/js/article.js"></script>
+</html>

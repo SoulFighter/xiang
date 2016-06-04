@@ -1,0 +1,59 @@
+.article-h1{
+	margin: 20px 0;
+	height: 30px;
+	line-height: 30px;
+	vertical-align: middle;
+	text-align: center;
+}
+
+.something{
+	height: 30px;
+	padding: 0 100px;
+}
+
+.article-main{
+	text-indent: 4em;
+	margin-bottom: 200px;
+}
+
+.article-main h1{
+	margin: 20px 0;
+	height: 30px;
+	line-height: 30px;
+	vertical-align: middle;
+	border-left: 2px solid #dcdcdc;
+	font-size: 20px;
+	background-color: #ededed;
+	text-indent: 1em;
+}
+
+.article-main p{
+	line-height: 30px;
+	vertical-align: middle;
+	font-size: 16px;
+	padding: 0 20px;
+}
+
+
+.right-nav{
+	position: fixed;
+	left: 50%;
+	top:200px;
+	margin-left: 650px;
+	width: 300px;
+}
+
+.right-nav li{
+	height: 24px;
+	line-height: 24px;
+	vertical-align: middle;
+}
+
+.right-nav li a{
+	color: #3B95C9;
+}
+
+.right-nav li a:hover{
+	cursor: pointer;
+	text-decoration: underline;
+}

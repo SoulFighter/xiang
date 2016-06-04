@@ -1,0 +1,47 @@
+.news-list{
+	margin: 20px 0;
+}
+
+.news-list h1{
+	height: 40px;
+	line-height: 40px;
+	font-size: 20px;
+}
+
+.news-list h1 a{
+	color: #222;
+}
+
+
+.news-list .something{
+	height: 30px;
+	line-height: 30px;
+	padding: 0 20px;
+}
+
+.news-list .remark{
+	line-height: 24px;
+	vertical-align: middle;
+	font-size: 16px;
+	text-indent: 2em;
+}
+
+.news-list .more{
+	height: 24px;
+	line-height: 24px;
+	padding: 10px 0 10px 0;
+	vertical-align: middle;
+}
+
+.news-list .more a{
+	float: right;
+	display: block;
+	width: 80px;
+	height: 24px;
+	line-height: 24px;
+	vertical-align: middle;
+	text-align: center;
+	font-size: 14px;
+	border: 1px solid #ededed;
+	border-radius: 3px;
+}
